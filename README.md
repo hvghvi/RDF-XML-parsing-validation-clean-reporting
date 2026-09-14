@@ -9,5 +9,5 @@ Success Criteria:
 - Output clean CSV / summary reports
 
 Purpose:  
-The purpose of this project is to practice working with real-world power grid data in preparation for my internship.  
+The purpose of this project is to practice working with real-world power grid data in preparation for my internship (good for ADMS/CIM import work).  
 The purpose of this tool is to automate the extraction, validation, and reporting of critical power system equipment data from CIM-style RDF/XML files. 
