@@ -17,5 +17,9 @@ for element in root.iter():
         print()
         print(element.tag, uuid)
     else:
-        print(element.tag, element.text if element.text else "N/A")
-       
+        print(element.tag, element.text.strip() if element.text else "N/A") 
+"""
+This is a known quirk of XML in general — pretty-printed/indented XML files (with line breaks for readability) 
+end up with elements like RDF having "text" 
+that's really just whitespace left over from how the file was formatted, not meaningful data.
+"""
