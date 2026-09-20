@@ -6,10 +6,16 @@ tree = ET.parse('data/TD Basic Golden InstanceSet.xml')
 # Get the root element
 root = tree.getroot()
 
-# Loop through every element in the tree, print its tag and text
+
+current_object = None
+#loop through each uuid group and print out its attributes
 for element in root.iter():
-    if element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about') is not None:
-        print(element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about'))
+    uuid = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about')
+
+    if uuid:
+        current_object = element
+        print()
+        print(element.tag, uuid)
     else:
         print(element.tag, element.text if element.text else "N/A")
-        print(element.attrib)
+       
