@@ -1,0 +1,11 @@
+import xml.etree.ElementTree as ET
+
+# Parse the XML file
+tree = ET.parse('data/TD Basic Golden InstanceSet.xml')
+
+# Get the root element
+root = tree.getroot()
+
+# Loop through every element in the tree, print its tag and text
+for element in root.iter():
+    print(element.tag, element.text)
