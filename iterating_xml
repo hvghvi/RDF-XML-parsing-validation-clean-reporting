@@ -21,8 +21,11 @@ for element in root.iter():
             storage[uuid] = {}
             storage[current_uuid]["tag"] = element.tag
     else:
-        print(element.tag, element.text.strip() if element.text else "N/A") 
-        storage[current_uuid][element.tag] = element.text.strip()
+        if current_uuid == None:
+            pass #skips root as it doesnt contain anything important
+        else:
+            print(element.tag, element.text.strip() if element.text else "N/A") 
+            storage[current_uuid][element.tag] = element.text.strip()
 
 print(storage)
 
