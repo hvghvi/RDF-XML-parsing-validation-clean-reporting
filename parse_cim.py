@@ -21,7 +21,7 @@ def parse_cim(filepath):
             print(element.tag, uuid)
             if uuid not in storage:
                 storage[uuid] = {}
-                storage[current_uuid]["tag"] = element.tag
+                storage[current_uuid]["tag"] = element.tag.split('}')[-1]  # Store the tag name without the namespace
         else:
             if current_uuid == None:
                 pass #skips root as it doesnt contain anything important
@@ -33,7 +33,7 @@ def parse_cim(filepath):
                 else:
                     storage[current_uuid][element.tag] = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource')
 
-        return storage
+    return storage
 
     """
     Reason for strip:
