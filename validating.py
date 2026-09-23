@@ -1,11 +1,17 @@
 import parse_cim as parse_cim
 
 errors = []
-storage = parse_cim('data/TD Basic Golden InstanceSet.xml')
 
 def validate(storage, valid_keys):
     for x in storage:
-        for i in valid_keys:
-            if i not in storage[x]:
-                errors.append(f"missing {i} key in object {x}")
+        if storage[x]["tag"] in valid_keys:
+            for y in valid_keys[storage[x]["tag"]]:
+                if y not in storage[x]:
+                    errors.append(f"Missing key '{y}' for object with UUID '{x}' and tag '{storage[x]['tag']}'.")
 
+
+        
+    if not errors:
+        return ("All required keys are present in the storage dictionary.")
+
+    return errors
