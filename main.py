@@ -6,12 +6,17 @@ def main():
     #will be changed into a get function.
 
     required_fields = { #hardcoded in this example, will be changed into a function
-    'Feeder': ['IdentifiedObject.name', 'Feeder.TraceStart'],
-    'ConnectivityNode': ['IdentifiedObject.name']
+    'Feeder': ['IdentifiedObject.name', 'Feeder.TraceStart', 'shouldbeerror'],
+    'ConnectivityNode': ['IdentifiedObject.name'],
+    'ERORR': ['ERROR', 'ERROR']
     }
 
     parsed_data = parse_cim.parse_cim(data)
     validated_data = validate.validate(parsed_data, required_fields)
+
+    print(validated_data)
+
+main()
 
 
     
