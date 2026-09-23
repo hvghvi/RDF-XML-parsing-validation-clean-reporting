@@ -17,8 +17,6 @@ def parse_cim(filepath):
         if uuid:
             current_object = element
             current_uuid = uuid
-            print()
-            print(element.tag, uuid)
             if uuid not in storage:
                 storage[uuid] = {}
                 storage[current_uuid]["tag"] = element.tag.split('}')[-1]  # Store the tag name without the namespace
@@ -26,12 +24,10 @@ def parse_cim(filepath):
             if current_uuid == None:
                 pass #skips root as it doesnt contain anything important
             else:
-                print(element.tag, element.text.strip() if element.text else element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource')) 
-
                 if element.text != None:
-                    storage[current_uuid][element.tag] = element.text.strip()
+                    storage[current_uuid][ element.tag.split('}')[-1] ] = element.text.strip()
                 else:
-                    storage[current_uuid][element.tag] = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource')
+                    storage[current_uuid][element.tag.split('}')[-1]] = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource')
 
     return storage
 

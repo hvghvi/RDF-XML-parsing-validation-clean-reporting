@@ -10,7 +10,6 @@ def validate(storage, valid_keys):
                     errors.append(f"Missing key '{y}' for object with UUID '{x}' and tag '{storage[x]['tag']}'.")
 
 
-        
     if not errors:
         return ("All required keys are present in the storage dictionary.")
 
