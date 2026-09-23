@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 
-def parce_cim(filepath):
+def parse_cim(filepath):
     # Parse the XML file
     tree = ET.parse(filepath)
 
