@@ -7,7 +7,7 @@ def validate(storage, valid_keys):
         if storage[x]["tag"] in valid_keys:
             for y in valid_keys[storage[x]["tag"]]:
                 if y not in storage[x]:
-                    errors.append(f"Missing key '{y}' for object with UUID '{x}' and tag '{storage[x]['tag']}'.")
+                    errors.append({})
 
 
     if not errors:
