@@ -7,10 +7,9 @@ def validate(storage, valid_keys):
         if storage[x]["tag"] in valid_keys:
             for y in valid_keys[storage[x]["tag"]]:
                 if y not in storage[x]:
-                    errors.append({})
-
-
-    if not errors:
-        return ("All required keys are present in the storage dictionary.")
-
-    return errors
+                    errors.append({  #each error has its own dictionary with uuid, tag and missing field. it helps identify easier.
+                        "uuid": x,
+                        "tag": storage[x]["tag"],
+                        "missing_field": y
+                    })
+    return errors #returns an empty list if no errors

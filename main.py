@@ -14,8 +14,6 @@ def main():
     parsed_data = parse_cim.parse_cim(data)
     validated_data = validate.validate(parsed_data, required_fields)
 
-    print("\n".join(validated_data))
-
 if __name__ == "__main__":
     main()
 
