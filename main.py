@@ -1,5 +1,6 @@
 import parse_cim as parse_cim
 import validating as validate
+import cleaner as cleaner
 
 def main():
     data = 'data/TD Basic Golden InstanceSet.xml' #right now its hardcoded 
@@ -13,6 +14,9 @@ def main():
 
     parsed_data = parse_cim.parse_cim(data)
     validated_data = validate.validate(parsed_data, required_fields)
+
+
+    cleaner.clean(required_fields, validated_data)
 
 if __name__ == "__main__":
     main()
