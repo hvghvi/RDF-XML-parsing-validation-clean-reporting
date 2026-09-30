@@ -3,8 +3,14 @@
 <rdf:RDF  
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:cim="http://ucaiug.org/61970cim18v02_61968cim14v00#"
-	xmlns:gmdm="http://ucaiug.org/GMDM#"
-	xmlns:exch="http://ucaiug.org/GMDM/Exchange#">
+	xmlns:gmdm="http://ucaiug.org/GMDM#">
+
+    <cim:ConnectivityNode rdf:ID="CN_Node01">
+        <cim:IdentifiedObject.name>Substation_Node_A</cim:IdentifiedObject.name>
+    </cim:ConnectivityNode>
+
+    
+
 
 
 
