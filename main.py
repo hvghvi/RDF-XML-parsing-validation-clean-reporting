@@ -16,7 +16,7 @@ def main():
     validated_data = validate.validate(parsed_data, required_fields)
 
 
-    cleaner.clean(required_fields, validated_data)
+    cleaner.clean(validated_data)
 
 if __name__ == "__main__":
     main()
