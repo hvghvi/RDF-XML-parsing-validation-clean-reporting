@@ -1,8 +1,8 @@
 import parse_cim as parse_cim
 
-errors = []
 
 def validate(storage, valid_keys):
+    errors = []
     for x in storage:
         if storage[x]["tag"] in valid_keys:
             for y in valid_keys[storage[x]["tag"]]:
@@ -12,4 +12,4 @@ def validate(storage, valid_keys):
                         "tag": storage[x]["tag"],
                         "missing_field": y
                     })
-    return errors #returns an empty list if no errors
+    return errors  # returns an empty list if no errors
