@@ -2,7 +2,6 @@ import pytest
 
 @pytest.fixture
 def get_required_fields(): # with errors
-
     required_fields = { #hardcoded in this example, will be changed into a function
         'Feeder': ['IdentifiedObject.name', 'Feeder.TraceStart', 'shouldbeerror'],
         'ConnectivityNode': ['IdentifiedObject.name'],
