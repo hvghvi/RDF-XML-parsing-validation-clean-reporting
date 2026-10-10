@@ -33,7 +33,7 @@ This currently uses the XML file configured in `main.py` and writes the generate
 ## Run tests
 
 ```bash
-pytest -q
+python3 -m pytest
 ```
 
 ## Current Disadvantages:
