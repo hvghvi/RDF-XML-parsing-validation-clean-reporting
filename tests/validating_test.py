@@ -53,3 +53,19 @@ def test_validate(get_required_fields, get_required_fields2):
     }
 
     assert validate(storage_without_errors, get_required_fields2) == []
+
+
+def test_empty_values_count_as_missing():
+    storage = {
+        'u1': {
+            'tag': 'Feeder',
+            'IdentifiedObject.name': '',
+            'Feeder.TraceStart': None,
+        },
+    }
+    rules = {'Feeder': ['IdentifiedObject.name', 'Feeder.TraceStart']}
+
+    assert validate(storage, rules) == [
+        {'uuid': 'u1', 'tag': 'Feeder', 'missing_field': 'IdentifiedObject.name'},
+        {'uuid': 'u1', 'tag': 'Feeder', 'missing_field': 'Feeder.TraceStart'},
+    ]
