@@ -39,3 +39,8 @@ python3 -m pytest
 ## Current Disadvantages:
 
 storage problem: since this dataset is quite small we arent really accounting what happens when data starts going into GB range (which is realistic in the real world)
+
+
+## improvements to make:   
+
+Separate configuration from execution. (seperating required fields out of main)
