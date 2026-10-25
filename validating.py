@@ -1,5 +1,10 @@
 import parse_cim as parse_cim
 
+def is_missing(obj, field):
+    value = obj.get(field)
+    return value is None or (isinstance(value, str) and value.strip() == "")
+
+
 def validate(storage, valid_keys):
     errors = []
     for x in storage:
