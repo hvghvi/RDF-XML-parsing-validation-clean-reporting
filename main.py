@@ -2,9 +2,14 @@ import parse_cim as parse_cim
 import validating as validate
 import cleaner as cleaner
 
+import argparse
+from pathlib import Path
+
 def main():
-    data = 'data/TD Basic Golden InstanceSet.xml' #right now its hardcoded 
-    #will be changed into a get function.
+    argparser = argparse.ArgumentParser(description="A script to calculate exponential growth.") #init
+    
+
+
 
     required_fields = { #hardcoded in this example, will be changed into a function
     'Feeder': ['IdentifiedObject.name', 'Feeder.TraceStart', 'shouldbeerror'],
