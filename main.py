@@ -18,7 +18,10 @@ def main():
 
     parsed_data = parse_cim.parse_cim(args.filename)
     validated_data = validate.validate(parsed_data, required_fields)
-    cleaner.clean(validated_data, args.output)
+
+    output_path = args.output or f"{Path(args.filename).stem}_report.csv"
+    cleaner.clean(validated_data, output_path)
+
 if __name__ == "__main__":
     main()
 
