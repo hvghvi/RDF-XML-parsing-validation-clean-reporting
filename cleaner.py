@@ -1,7 +1,7 @@
 import csv
 
 
-def clean(errors):
+def clean(errors, output_path="test_report"):
     fieldnames = ["uuid", "tag", "missing_field"]
     with open('test_report', 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter='|')
