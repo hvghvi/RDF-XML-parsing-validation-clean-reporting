@@ -1,38 +1,43 @@
 import xml.etree.ElementTree as ET
 
+RDF_NS = '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}'
+
+def _local_name(tag):
+    return tag.split('}')[-1] if '}' in tag else tag
+
 
 def parse_cim(filepath):
-    # Parse the XML file
-    tree = ET.parse(filepath)
+    storage = {}
+    object_stack = []
 
-    # Get the root element
-    root = tree.getroot()
-    current_object = None
-    current_uuid = None
-    storage={}
+    for event, element in ET.iterparse(filepath, events=('start', 'end')):
+        about = element.get(RDF_NS + 'about')
 
-    for element in root.iter():
-        uuid = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about')
+        if event == 'start':
+            if about is not None:
+                storage.setdefault(about, {})
+                storage[about]['tag'] = _local_name(element.tag)
+                object_stack.append(about)
+                continue
 
-        if uuid:
-            current_object = element
-            current_uuid = uuid
-            if uuid not in storage:
-                storage[uuid] = {}
-                storage[current_uuid]["tag"] = element.tag.split('}')[-1]  # Store the tag name without the namespace
-        else:
-            if current_uuid == None:
-                pass #skips root as it doesnt contain anything important
-            else:
-                if element.text != None:
-                    storage[current_uuid][ element.tag.split('}')[-1] ] = element.text.strip()
-                else:
-                    storage[current_uuid][element.tag.split('}')[-1]] = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}resource')
+            if object_stack: #fail safe making sure that there IS a parent object and an empty stack says there isnt one or its the root
+                tag_name = _local_name(element.tag) #the child
+                resource = element.get(RDF_NS + 'resource') #get what its pointing to
+                text = element.text.strip() if element.text is not None and element.text.strip() else None
+
+                if resource is not None:
+                    storage[object_stack[-1]][tag_name] = resource
+                elif text is not None:
+                    storage[object_stack[-1]][tag_name] = text
+
+        elif about is not None and object_stack and object_stack[-1] == about:
+            object_stack.pop()
 
     return storage
 
     """
     Reason for strip:
-    This is a known quirk of XML in general — pretty-printed/indented XML files (with line breaks for readability) 
+    This is a known quirk of XML in general — pretty-printed/indented XML files (with line breaks for readability)
     that's really just whitespace left over from how the file was formatted, not meaningful data.
     """
+    
