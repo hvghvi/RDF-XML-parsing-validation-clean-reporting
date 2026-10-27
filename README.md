@@ -24,11 +24,13 @@ pip install -r requirements.txt
 
 ## Run the project
 
+From the project root, pass the XML file you want to parse:
+
 ```bash
-python main.py
+python main.py "data/TD Basic Golden InstanceSet.xml"
 ```
 
-This currently uses the XML file configured in `main.py` and writes the generated report to `test_report` in the project root.
+This reads the CIM RDF/XML file and writes the generated CSV report in the project root.
 
 ## Run tests
 
