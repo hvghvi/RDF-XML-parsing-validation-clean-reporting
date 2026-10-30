@@ -1,6 +1,6 @@
 # RDF/XML Parsing, Validation, and Clean Reporting
 
-This project parses CIM-style RDF/XML files, validates required fields, and writes a clean CSV report of missing values.
+This project parses CIM-style RDF/XML files, validates required fields and object references, and writes a CSV report of missing values and unresolved references.
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This project is meant to practice working with real-world power-system data and 
 
 - parsing XML data into structured dictionaries
 - validating required fields based on equipment type
-- cleaning and reporting missing data
+- reporting missing required fields and references to objects that do not exist
 - generating a simple CSV report for downstream review
 
 ## Setup
