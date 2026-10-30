@@ -12,12 +12,14 @@ def parse_cim(filepath):
 
     for event, element in ET.iterparse(filepath, events=('start', 'end')):
         about = element.get(RDF_NS + 'about')
+        rdf_id = element.get(RDF_NS + 'ID')
+        object_id = about if about is not None else f'#{rdf_id}' if rdf_id is not None else None
 
         if event == 'start':
-            if about is not None:
-                storage.setdefault(about, {})
-                storage[about]['tag'] = _local_name(element.tag)
-                object_stack.append(about)
+            if object_id is not None:
+                storage.setdefault(object_id, {})
+                storage[object_id]['tag'] = _local_name(element.tag)
+                object_stack.append(object_id)
                 continue
 
             if object_stack: #fail safe making sure that there IS a parent object and an empty stack says there isnt one or its the root
@@ -30,7 +32,7 @@ def parse_cim(filepath):
                 elif text is not None:
                     storage[object_stack[-1]][tag_name] = text
 
-        elif about is not None and object_stack and object_stack[-1] == about:
+        elif object_id is not None and object_stack and object_stack[-1] == object_id:
             object_stack.pop()
 
     return storage
