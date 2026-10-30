@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:cim="http://ucaiug.org/61970cim18v02_61968cim14v00#">
+    <cim:ConnectivityNode rdf:ID="CN_Node01">
+        <cim:IdentifiedObject.name>Substation_Node_A</cim:IdentifiedObject.name>
+    </cim:ConnectivityNode>
+    <cim:Terminal rdf:about="urn:uuid:terminal-1">
+        <cim:Terminal.ConnectivityNode rdf:resource="#CN_Node01" />
+    </cim:Terminal>
+</rdf:RDF>
