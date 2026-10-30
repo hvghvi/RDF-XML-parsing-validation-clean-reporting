@@ -13,6 +13,9 @@ def parse_cim(filepath):
 
     for element in root.iter():
         uuid = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about')
+        rdf_id = element.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}ID')
+        if uuid is None and rdf_id is not None:
+            uuid = f"#{rdf_id}"
 
         if uuid:
             current_object = element
