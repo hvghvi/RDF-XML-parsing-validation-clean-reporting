@@ -83,3 +83,22 @@ def test_empty_values_count_as_missing():
         {'uuid': 'u1', 'tag': 'Feeder', 'missing_field': 'IdentifiedObject.name'},
         {'uuid': 'u1', 'tag': 'Feeder', 'missing_field': 'Feeder.TraceStart'},
     ]
+
+
+def test_validate_reports_missing_feeder_trace_start_reference():
+    storage = {
+        'urn:uuid:feeder-1': {
+            'tag': 'Feeder',
+            'IdentifiedObject.name': 'Feeder A',
+            'Feeder.TraceStart': 'urn:uuid:missing-node',
+        },
+    }
+
+    assert validate(storage, {'Feeder': ['IdentifiedObject.name', 'Feeder.TraceStart']}) == [
+        {
+            'uuid': 'urn:uuid:feeder-1',
+            'tag': 'Feeder',
+            'reference_field': 'Feeder.TraceStart',
+            'missing_reference': 'urn:uuid:missing-node',
+        },
+    ]
