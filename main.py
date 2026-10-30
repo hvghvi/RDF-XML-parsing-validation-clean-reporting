@@ -1,11 +1,9 @@
 from pathlib import Path
 import argparse
+import sys
 import parse_cim as parse_cim
 import validating as validate
 import cleaner as cleaner
-
-import argparse
-from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Program takes a CIM file, validates the file, and makes a report")
@@ -20,6 +18,13 @@ def main():
     }
 
     parsed_data = parse_cim.parse_cim(args.filename)
+    if not parsed_data:
+        print(
+            f"Warning: no RDF objects were found in '{args.filename}'; no report was generated.",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+
     validated_data = validate.validate(parsed_data, required_fields)
 
     if args.output is None:
