@@ -1,6 +1,20 @@
 import pytest
 
+from parse_cim import parse_cim
 from validating import validate
+
+
+def test_parse_cim_builds_uuid_index():
+    storage = parse_cim('data/TD Basic Golden InstanceSet.xml')
+
+    feeder_uuid = 'urn:uuid:bfaee055-4440-4173-9b95-615b6fafd523'
+    node_uuid = 'urn:uuid:5d73925c-b008-472d-a75b-a64c886a8805'
+
+    assert storage[feeder_uuid]['tag'] == 'Feeder'
+    assert storage[feeder_uuid]['IdentifiedObject.name'] == 'Fdr 3A'
+    assert storage[feeder_uuid]['Feeder.TraceStart'] == 'urn:uuid:5d73925c-b008-472d-a75b-a64c886a8805'
+    assert storage[node_uuid]['tag'] == 'ConnectivityNode'
+    assert storage[node_uuid]['IdentifiedObject.name'] == 'Feeder A CN'
 
 
 def test_get_required_fields(get_required_fields):

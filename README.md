@@ -24,11 +24,13 @@ pip install -r requirements.txt
 
 ## Run the project
 
+From the project root, pass the XML file you want to parse:
+
 ```bash
-python main.py
+python main.py "data/TD Basic Golden InstanceSet.xml"
 ```
 
-This currently uses the XML file configured in `main.py` and writes the generated report to `test_report` in the project root.
+This reads the CIM RDF/XML file and writes the generated CSV report in the project root.
 
 ## Run tests
 
@@ -36,6 +38,9 @@ This currently uses the XML file configured in `main.py` and writes the generate
 python3 -m pytest
 ```
 
-## Current Disadvantages:
+## Future improvements
 
-storage problem: since this dataset is quite small we arent really accounting what happens when data starts going into GB range (which is realistic in the real world)
+- Scale handling: this dataset is small, so the current approach does not yet account for much larger XML files that may reach GB-scale sizes in real-world use.
+- More robust validation: add richer rule sets for equipment-specific CIM fields instead of the current hardcoded examples.
+- Better reporting: expand output to include more context, such as equipment type, source file, and fix suggestions.
+- Performance tuning: improve memory usage and parsing efficiency for larger datasets and production pipelines.
