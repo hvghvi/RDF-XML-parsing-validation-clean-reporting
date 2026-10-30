@@ -31,6 +31,7 @@ python main.py "data/TD Basic Golden InstanceSet.xml"
 ```
 
 This reads the CIM RDF/XML file and writes the generated CSV report in the project root.
+If the input contains no RDF objects, the program prints a warning, exits with a non-zero status, and does not write a report.
 
 ## Run tests
 
