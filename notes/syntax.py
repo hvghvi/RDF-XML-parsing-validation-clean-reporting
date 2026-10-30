@@ -28,3 +28,25 @@ element.text
 #So the distinction is: 
 # attribute = sits inside the tag's own brackets (tag attribute="value"),
 #  text = sits between the opening and closing tag (<tag>text</tag>
+
+
+
+## step by step breakdown for argparse
+
+# 1, initialise the parser = parser = argparse.ArgumentParser(description="")
+    import argparse
+    parser = argparse.ArgumentParser(description="A tool to compress images.")
+
+# 2, define rules (.add_argument) (You register the flags you want to accept. This is where you set types, defaults, and requirements.)
+    # A required positional argument
+    parser.add_argument("filename") 
+
+    # An optional argument that converts the input to an integer
+    parser.add_argument("-c", "--count", type=int, default=1) 
+
+# 3, Parse the Command Line (.parse_args()) When you call parse_args(), Python inspects sys.argv (the raw list of strings sent by PowerShell or Bash), bundles them into an object.
+    args = parser.parse_args()
+
+# 4, Extract and Use (The bundled object (args) holds your inputs as clean Python properties.)\
+    print(args.filename)  # e.g., "photo.jpg"
+    print(args.count)     # e.g., 5 (already converted to a native integer)
