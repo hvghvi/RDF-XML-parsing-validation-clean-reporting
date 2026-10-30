@@ -1,6 +1,7 @@
 import csv
+from pathlib import Path
 
-def clean(errors, output_path="test_report"):
+def clean(errors, output_path="output/test_report.csv"):
     fieldnames = [
         "uuid",
         "tag",
@@ -8,7 +9,9 @@ def clean(errors, output_path="test_report"):
         "reference_field",
         "missing_reference",
     ]
-    with open(output_path, "w", newline="") as csvfile:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter='|')
         writer.writeheader()
         if errors:

@@ -28,7 +28,7 @@ def main():
     validated_data = validate.validate(parsed_data, required_fields)
 
     if args.output is None:
-        args.output = Path(args.filename).stem + "_report.csv"
+        args.output = Path("output") / f"{Path(args.filename).stem}_report.csv"
 
     cleaner.clean(validated_data, args.output)
 

@@ -1,5 +1,3 @@
-import parse_cim as parse_cim
-
 def is_missing(obj, field):
     value = obj.get(field)
     return value is None or (isinstance(value, str) and value.strip() == "")
